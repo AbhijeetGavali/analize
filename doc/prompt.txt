@@ -1,0 +1,321 @@
+// FOR REVIEW
+
+*Transform the following review data into a structured output format. The input contains details such as product ID, name, review date, rating, and the text of the review. Based on this information, return a detailed output that includes the review's sentiment, specific aspect-based sentiments, a summary of the review, key keywords, and validate the given rating. Use the following input and output structures:*
+
+**Input Structure:**
+```json
+{
+    "asin": "string",
+    "name": "string",
+    "date": "string",
+    "rating": "number",
+    "review": "string"
+}
+```
+
+**Output Structure:**
+```json
+{
+    "name": "string",
+    "date": "YYYY-MM-DD",
+    "rating": "number",
+    "review": "string",
+    "sentiment": "positive | negative | neutral",
+    "aspect_sentiment": {
+        "quality": "positive | negative | neutral",
+        "shipping": "positive | negative | neutral",
+        "...": ""
+    },
+    "review_summary": "string",
+    "keywords": [
+        "string",
+        "string",
+        "..."
+    ],
+    "rating_validation": "valid | invalid"
+}
+```
+
+**Example Input:**
+```json
+{
+    "asin": "B07PGL2N7J",
+    "name": "Wireless Earbuds",
+    "date": "2024-10-10",
+    "rating": 4,
+    "review": "Great sound quality, but shipping was delayed."
+}
+```
+
+**Expected Output:**
+```json
+{
+    "name": "Wireless Earbuds",
+    "date": "2024-10-10",
+    "rating": 4,
+    "review": "Great sound quality, but shipping was delayed.",
+    "sentiment": "positive",
+    "aspect_sentiment": {
+        "quality": "positive",
+        "shipping": "negative"
+    },
+    "review_summary": "The product has great sound quality, but there were issues with delayed shipping.",
+    "keywords": ["sound quality", "shipping delay"],
+    "rating_validation": "valid"
+}
+```
+respond with "OK" if understood
+
+
+
+
+********************************************************************************************************************************
+
+
+
+
+// FOR PRODUCTS
+
+Analyze customer reviews for products based on the input structure provided below. Generate a detailed output that summarizes the product sentiment, reviews, and provides business insights.
+
+### **Input Structure:**
+You will receive an array of customer reviews in the following format:
+
+```
+Array<{
+        "asin": "string",    // Product unique identifier
+        "name": "string",    // Product name
+        "date": "string",    // Date of the review in YYYY-MM-DD format
+        "rating": "number",  // Review rating (1 to 5 stars)
+        "review": "string"   // Review text
+}>
+```
+
+### **Expected Output Structure:**
+The output should provide a comprehensive analysis of the product reviews, including sentiment distribution, rating trends, and actionable business insights. Format the output as follows:
+
+```json
+{
+  "product_name": "string",   // Name of the product being reviewed
+  "sentiment_distribution": { // Sentiment analysis of the reviews
+    "positive": "percentage", // Percentage of positive reviews
+    "negative": "percentage", // Percentage of negative reviews
+    "neutral": "percentage"   // Percentage of neutral reviews
+  },
+  "average_rating": "number", // Average rating across all reviews
+  "average_rating_over_time": [ // Monthly trend of average ratings
+    {
+      "date": "YYYY-MM",         // Year and month of review aggregation
+      "average_rating": "number" // Average rating for that month
+    }
+  ],
+  "aspect_sentiment_distribution": { // Sentiment analysis on specific aspects of the product
+    "quality": {
+      "positive": "number",      // Number of positive reviews on product quality
+      "negative": "number",      // Number of negative reviews on product quality
+      "neutral": "number"        // Number of neutral reviews on product quality
+    },
+    "shipping": {
+      "positive": "number",
+      "negative": "number",
+      "neutral": "number"
+    },
+    "...": ""
+  },
+  "most_mentioned_aspects": {   // Aspects of the product that were most mentioned in reviews
+    "aspect": "count"           // Count of mentions for each aspect
+  },
+  "keyword_frequency": {        // Keyword frequency analysis from reviews
+    "keyword": "count"          // Number of times a keyword was mentioned
+  },
+  "business_recommendations": { // Actionable insights for the business
+    "suggested_actions": [      // Actions to improve based on review analysis
+      "Improve shipping time",
+      "Enhance product quality control",
+      "..."
+    ],
+    "customer_experience_areas_to_focus_on": [ // Areas to focus on for better customer satisfaction
+      "Shipping",
+      "Product durability",
+      "..."
+    ]
+  }
+}
+```
+
+**Instructions:** Based on the customer reviews data provided in next input, analyze the reviews to calculate the sentiment distribution (positive, negative, neutral), the average rating, rating trends over time, and sentiments on specific product aspects like quality and shipping. Also, generate business recommendations based on the data.
+
+respond with "OK" if understood
+
+
+
+
+
+********************************************************************************************************************************
+
+
+
+
+
+// FOR BUSINESS
+
+I have a dataset of product reviews, each containing details like product ID (ASIN), product name, review date, rating (on a scale of 1-5), and the review text. I want to extract business insights from this data.
+
+### **Input Structure:**
+The reviews are structured as follows:
+```json
+Array<{
+        "asin": "string",
+        "name": "string",
+        "date": "string",
+        "rating": "number",
+        "review": "string"
+    }>
+```
+
+### **Output Structure:**
+I want the insights from these reviews in the following format:
+```json
+{
+    "overall_sentiment_distribution": {
+        "positive": "percentage",
+        "negative": "percentage",
+        "neutral": "percentage"
+    },
+    "overall_aspect_sentiment_distribution": {
+        "quality": {
+            "positive": "number",
+            "negative": "number",
+            "neutral": "number"
+        },
+        "shipping": {
+            "positive": "number",
+            "negative": "number",
+            "neutral": "number"
+        },
+        "...": ""
+    },
+    "overall_most_mentioned_aspects": {
+        "aspect": "count"
+    },
+    "overall_keyword_frequency": {
+        "keyword": "count"
+    },
+    "frequent_positive_themes": [
+        "string",
+        "string",
+        "..."
+    ],
+    "frequent_negative_themes": [
+        "string",
+        "string",
+        "..."
+    ],
+    "business_recommendations": {
+        "suggested_priority_actions": [
+            "Improve shipping time",
+            "Enhance product quality control",
+            "..."
+        ],
+        "customer_experience_areas_to_focus_on": [
+            "Shipping",
+            "Product durability",
+            "..."
+        ]
+    }
+}
+```
+
+### **Analysis Requirements:**
+- **Sentiment Analysis**: Determine the overall sentiment (positive, negative, neutral) of the reviews and provide the sentiment distribution in percentages.
+- **Aspect-based Sentiment Analysis**: Break down sentiment (positive, negative, neutral) for key aspects such as product quality, shipping, etc.
+- **Mention Frequency**: Provide counts for the most frequently mentioned aspects and keywords across all reviews.
+- **Frequent Themes**: Extract frequent themes from the reviews, categorizing them as either positive or negative.
+- **Business Recommendations**: Based on the insights, suggest priority actions for improving the business (e.g., shipping time, product quality) and key areas of the customer experience that need attention.
+
+### **NOTE**: maximum number of strings in any array and fields in object should be 5
+Please analyze the reviews and return the insights in the requested format.
+
+respond with "OK" if understood
+
+
+
+
+********************************************************************************************************************************
+
+
+
+
+
+I have a CSV table with product reviews that contains the following columns: name, date, rating, and review. Please process the table and perform the following tasks:
+
+Sentiment Classification: Analyze the review text and classify the sentiment as positive, negative, or neutral.
+Aspect-Based Sentiment Analysis: Identify key product aspects mentioned in the review (e.g., quality, shipping, ...) and determine the sentiment for each aspect (positive, negative, neutral).
+Review Summarization: Summarize the content of each review into a concise form.
+Keyword Extraction: Extract important keywords and topics from the review text.
+Rating Validation: Compare the sentiment and the content of the review with the provided rating and determine if the rating is valid or invalid.
+Generate Business Metrics: Provide metrics for visualization as JSON, to be used for generating charts:
+Sentiment Distribution: Calculate the percentage of reviews that are positive, negative, and neutral.
+Average Rating Over Time: Calculate the average rating trend over time (monthly or weekly).
+Aspect Sentiment Distribution: For each aspect (e.g., quality, shipping), provide a count of reviews that are positive, negative, or neutral.
+Most Mentioned Aspects: Identify the most frequently mentioned aspects across reviews.
+Keyword Frequency: Calculate the frequency of important keywords across all reviews.
+Please return the results in the following JSON structure:
+
+Response JSON Format:
+{
+  "reviews": [
+    {
+      "name": "string",
+      "date": "YYYY-MM-DD",
+      "rating": "number",
+      "review": "string",
+      "sentiment": "positive | negative | neutral",
+      "aspect_sentiment": {
+        "quality": "positive | negative | neutral",
+        "shipping": "positive | negative | neutral",
+        ...
+      },
+      "review_summary": "string",
+      "keywords": ["string", "string", ...],
+      "rating_validation": "valid | invalid"
+    },
+    ...
+  ],
+  "metrics": {
+    "sentiment_distribution": {
+      "positive": "percentage",
+      "negative": "percentage",
+      "neutral": "percentage"
+    },
+    "average_rating_over_time": [
+      {
+        "date": "YYYY-MM",
+        "average_rating": "number"
+      }
+    ],
+    "aspect_sentiment_distribution": {
+      "quality": {
+        "positive": "number",
+        "negative": "number",
+        "neutral": "number"
+      },
+      "shipping": {
+        "positive": "number",
+        "negative": "number",
+        "neutral": "number"
+      },
+      ...
+    },
+    "most_mentioned_aspects": {
+      "aspect": "count"
+    },
+    "keyword_frequency": {
+      "keyword": "count"
+    }
+  }
+}
+content_copy
+ Use code with caution.
+Json
+with every next input you have to provide this information, reply with "OK" if understood.

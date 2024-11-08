@@ -1,0 +1,118 @@
+[
+    "REVIEW:",
+    {
+        "name": "string",
+        "date": "YYYY-MM-DD",
+        "rating": "number",
+        "review": "string",
+        "sentiment": "positive | negative | neutral",
+        "aspect_sentiment": {
+            "quality": "positive | negative | neutral",
+            "shipping": "positive | negative | neutral",
+            "...": ""
+        },
+        "review_summary": "string",
+        "keywords": [
+            "string",
+            "string",
+            "..."
+        ],
+        "rating_validation": "valid | invalid"
+    },
+    "PRODUCT:",
+    {
+        "product_name": "string",
+        "sentiment_distribution": {
+            "positive": "percentage",
+            "negative": "percentage",
+            "neutral": "percentage"
+        },
+        "average_rating": "number",
+        "average_rating_over_time": [
+            {
+                "date": "YYYY-MM",
+                "average_rating": "number"
+            }
+        ],
+        "aspect_sentiment_distribution": {
+            "quality": {
+                "positive": "number",
+                "negative": "number",
+                "neutral": "number"
+            },
+            "shipping": {
+                "positive": "number",
+                "negative": "number",
+                "neutral": "number"
+            },
+            "...": ""
+        },
+        "most_mentioned_aspects": {
+            "aspect": "count"
+        },
+        "keyword_frequency": {
+            "keyword": "count"
+        },
+        "business_recommendations": {
+            "suggested_actions": [
+                "Improve shipping time",
+                "Enhance product quality control",
+                "..."
+            ],
+            "customer_experience_areas_to_focus_on": [
+                "Shipping",
+                "Product durability",
+                "..."
+            ]
+        }
+    },
+    "BUSINESS:",
+    {
+        "overall_sentiment_distribution": {
+            "positive": "percentage",
+            "negative": "percentage",
+            "neutral": "percentage"
+        },
+        "overall_aspect_sentiment_distribution": {
+            "quality": {
+                "positive": "number",
+                "negative": "number",
+                "neutral": "number"
+            },
+            "shipping": {
+                "positive": "number",
+                "negative": "number",
+                "neutral": "number"
+            },
+            "...": ""
+        },
+        "overall_most_mentioned_aspects": {
+            "aspect": "count"
+        },
+        "overall_keyword_frequency": {
+            "keyword": "count"
+        },
+        "frequent_positive_themes": [
+            "string",
+            "string",
+            "..."
+        ],
+        "frequent_negative_themes": [
+            "string",
+            "string",
+            "..."
+        ],
+        "business_recommendations": {
+            "suggested_priority_actions": [
+                "Improve shipping time",
+                "Enhance product quality control",
+                "..."
+            ],
+            "customer_experience_areas_to_focus_on": [
+                "Shipping",
+                "Product durability",
+                "..."
+            ]
+        }
+    }
+]
